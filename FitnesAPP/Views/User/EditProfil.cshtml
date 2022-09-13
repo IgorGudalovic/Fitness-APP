@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "EditProfil";
+}
+@{
+    Layout = "";
+}
+<html>
+<head>
+    <title>FitApp</title>
+    @Styles.Render("~/Styles/CSSProject.css")
+</head>
+<body><br />
+    <form action="~/Home/Index">
+        <button class="btnHome" name="Home">Home</button>
+    </form>
+    <h3 style="color:red">@ViewBag.message</h3>
+    <h1 id="naslov">Edit</h1>
+    <form action="~/User/Edit" method="post">
+        <table id="pretraga">
+            <tr class="tableRow">
+                <td class="tableData">Korisnicko ime:</td>
+                <td class="tableData"><input type="text" name="KorisnickoIme" value="@ViewBag.korisnik.KorisnickoIme" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Lozinka:</td>
+                <td class="tableData"><input type="password" name="Lozinka" value="@ViewBag.korisnik.Lozinka" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Ime:</td>
+                <td class="tableData"><input type="text" name="Ime" value="@ViewBag.korisnik.Ime" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Prezime:</td>
+                <td class="tableData"><input type="text" name="Prezime" value="@ViewBag.korisnik.Prezime" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Pol:</td>
+                <td class="tableData">
+                    <input list="Pol" name="Pol" />
+                    <datalist id="Pol">
+                        <option value="MUSKI"></option>
+                        <option value="ZENSKI"></option>
+                    </datalist>
+                </td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Email:</td>
+                <td class="tableData"><input type="text" name="Email" value="@ViewBag.korisnik.Email" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Datum rodjenja:</td>
+                <td class="tableData"><input type="text" name="DatumRodjenja" value="@ViewBag.korisnik.DatumRodjenja" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td colspan="2" class="tableData">
+                    <input class="btn" type="submit" value="Izmeni" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

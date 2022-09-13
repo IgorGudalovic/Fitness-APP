@@ -121,9 +121,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TrenerController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VlasnikController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdresaFitnesCetnra.cs" />
+    <Compile Include="Models\FitnesCentar.cs" />
+    <Compile Include="Models\GrupniTrening.cs" />
+    <Compile Include="Models\Komentar.cs" />
+    <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +156,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Styles\CSSProject.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -159,13 +168,27 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="TextFiles\FitnesCentri.json" />
+    <Content Include="TextFiles\GrupniTreninzi.json" />
+    <Content Include="TextFiles\Korisnici.json" />
+    <Content Include="Views\Home\Detalji.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\Notification.cshtml" />
+    <Content Include="Views\User\Profil.cshtml" />
+    <Content Include="Views\User\EditProfil.cshtml" />
+    <Content Include="Views\Trener\Profil.cshtml" />
+    <Content Include="Views\Trener\AddView.cshtml" />
+    <Content Include="Views\Trener\Pregled.cshtml" />
+    <Content Include="Views\Vlasnik\Profil.cshtml" />
+    <Content Include="Views\Vlasnik\Pregled.cshtml" />
+    <Content Include="Views\Vlasnik\AddTeretana.cshtml" />
+    <Content Include="Views\Vlasnik\AddTrener.cshtml" />
+    <Content Include="Views\Vlasnik\AddAdresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

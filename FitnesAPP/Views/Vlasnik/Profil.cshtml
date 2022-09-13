@@ -1,0 +1,148 @@
+﻿@using FitnesAPP.Models
+@using System.Globalization;
+@{
+    ViewBag.Title = "Profil";
+}
+@{
+    Layout = "";
+}
+<html>
+<head>
+    <title>FitApp</title>
+    @Styles.Render("~/Styles/CSSProject.css")
+</head>
+<body>
+    <form action="~/Home/Index">
+        <button class="btnHome" name="Home">Home</button>
+    </form><br />
+
+    <form action="~/User/EditProfil">
+        <button class="btnHome" name="naziv" value="@ViewBag.korisnik.KorisnickoIme">Izmeni profil</button>
+    </form><br />
+
+    <h2 id="naslov">Profil</h2>
+    <div id="info">
+        <div class="info">
+            <span class="detaljiNaslov">Korisnicko ime:</span>
+            <span class="detalji"> @ViewBag.korisnik.KorisnickoIme</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Ime:</span>
+            <span class="detalji"> @ViewBag.korisnik.Ime</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Prezime:</span>
+            <span class="detalji"> @ViewBag.korisnik.Prezime</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Pol:</span>
+            <span class="detalji"> @ViewBag.korisnik.Pol.ToString()</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Email:</span>
+            <span class="detalji">@ViewBag.korisnik.Email</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Datum rodjenja:</span>
+            <span class="detalji">@ViewBag.korisnik.DatumRodjenja</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Uloga:</span>
+            <span class="detalji">@ViewBag.korisnik.Uloga</span>
+        </div>
+        <br />
+
+
+        <p id="detaljiNaslov">Lista teretana koje poseduje:</p>
+        <table id="tabela" border="1">
+            <tr>
+                <th class="tableHeader">Naziv</th>
+                <th class="tableHeader">Adresa</th>
+                <th class="tableHeader">Godina otvaranja</th>
+            </tr>
+            @if (ViewBag.korisnik.CentarVlasnik != null)
+            {
+                foreach (FitnesCentar item in ViewBag.korisnik.CentarVlasnik)
+                {
+                    <tr class="tableRow">
+                        <td class="tableDataDetail">@item.Naziv</td>
+                        <td class="tableDataDetail">@item.Adresa</td>
+                        <td class="tableDataDetail">@item.GodOtvaranja</td>
+                        <td>
+                            <form action="~/Vlasnik/Obrisi">
+                                <button class="btn" name="naziv" value="@item.Naziv">Obrisi</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="~/Vlasnik/Pregled">
+                                <button class="btn" name="naziv" value="@item.Naziv">Vise</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+        <br />
+        <form action="~/Vlasnik/AddAdresa">
+            <button class="btn" name="AddAdresa">Dodaj fitnes centar</button>
+        </form>
+        <br />
+
+        <form action="~/Vlasnik/SortBy">
+            <input list="Sort" name="opcija" />
+            <datalist id="Sort">
+                <option value="Sortiraj po imenu rastuce"></option>
+                <option value="Sortiraj po imenu opadajuce"></option>
+                <option value="Sortiraj po tipu rastuce"></option>
+                <option value="Sortiraj po tipu opadajuce"></option>
+                <option value="Sortiraj po datumu rastuce"></option>
+                <option value="Sortiraj po datumu opadajuce"></option>
+            </datalist>
+            <input type="submit" value="Sortiraj" />
+        </form>
+        <br />
+        <table id="pretraga">
+            <tr>
+                <td>
+                    <form action="~/Vlasnik/NadjiIme">
+                        <label for="searchByNaziv">Pretrazi po nazivu:</label>
+                        <input type="text" name="naziv" placeholder="Naziv" />
+                        <button class="btn" id="searchByName">Pronadji</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="~/Vlasnik/NadjiAdresu">
+                        <label for="NadjiAdresu">Pretrazi po adresi:</label>
+                        <input type="text" name="adresa" placeholder="Adresa" />
+                        <button class="btn" id="NadjiAdresu">Pronadji</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="~/Vlasnik/NadjiGodinu">
+                        <label for="NadjiGodinu">Pretrazi po godini otvaranja:</label>
+                        <input type="number" name="from" />
+                        <input type="number" name="to" />
+                        <button class="btn" id="NadjiGodinu">Pronadji</button>
+                    </form>
+                </td>
+            </tr>
+        </table>   
+
+        <table id="kombinovanaPretraga">
+            <tr>
+                <td>
+                    <form action="~/Vlasnik/KombinovanaPretragaTeretane">
+                        <label class="kombinovanaPretraga">Kombinovana pretraga</label>
+                        <input type="text" name="naziv" placeholder="Naziv" />
+                        <input type="text" name="adresa" placeholder="Adresa" />
+                        <input type="number" name="from" />
+                        <input type="number" name="to" />
+                        <button class="btn btnKombinovano" id="KombinovanaPretragaTeretane">Pronadji</button>
+                    </form>
+                </td>
+            </tr>
+        </table> 
+    </div>
+</body>
+</html>

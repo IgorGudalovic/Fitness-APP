@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Add";
+}
+@{
+    Layout = "";
+}
+<html>
+<head>
+    <title>FitApp</title>
+    @Styles.Render("~/Styles/CSSProject.css")
+</head>
+<body>
+    <form action="~/Home/Index">
+        <button class="btnHome" name="Home">Home</button>
+    </form><br />
+
+    <h1 id="naslov">Dodavanje nove grupe</h1>
+    <h3 style="color:red">@ViewBag.message</h3>
+
+    <form action="~/Trener/AddGroup" method="post">
+        <table id="pretraga">
+            <tr class="tableRow">
+                <td class="tableData">Naziv treninga:</td>
+                <td class="tableData"><input type="text" name="Naziv" placeholder="Unesite naziv" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Tip treninga:</td>
+                <td class="tableData"><input type="text" name="TipTreninga" placeholder="Unesite tip treninga" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Naziv fitnes centra:</td>
+                <td class="tableData"><input type="text" name="FitnesCentar" placeholder="Unesite naziv centra" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Trajanje treninga:</td>
+                <td class="tableData"><input type="text" name="TrajanjeTreninga" placeholder="h:m" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Datum treninga:</td>
+                <td class="tableData"><input type="text" name="DatumTreninga" placeholder="dd/mm/yy" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Vreme treninga:</td>
+                <td class="tableData"><input type="text" name="VremeTreninga" placeholder="h:m" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Maksimalan broj posetioca:</td>
+                <td class="tableData"><input type="number" name="MaxBrojPosetilaca" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData" colspan="2">
+                    <input class="btn" type="submit" value="Dodaj" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>

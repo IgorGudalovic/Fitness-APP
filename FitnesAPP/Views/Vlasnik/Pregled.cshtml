@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Pregled";
+}
+@{
+    ViewBag.Title = "Pregled";
+}
+@{
+    Layout = "";
+}
+<html>
+<head>
+    <title>FitApp</title>
+    @Styles.Render("~/Styles/CSSProject.css")
+</head>
+<body>
+    <form action="~/Home/Index">
+        <button class="btnHome" name="Home">Home</button>
+    </form>
+    <br />
+    <h2 id="naslov">Pregled @ViewBag.teretana.Naziv</h2>
+    <br />
+
+    <form action="~/Vlasnik/Modifikuj" method="post">
+        <table id="pretraga">
+            <tr class="tableRow">
+                <td class="tableData">Naziv:</td>
+                <td class="tableData"><input type="text" name="Naziv" value=" @ViewBag.teretana.Naziv" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Ulica, mesto, postanski broj:</td>
+                <td class="tableData"><input type="text" name="Adresa" value=" @ViewBag.teretana.Adresa.Ulica" /></td>
+                <td class="tableData"><input type="text" name="Adresa" value=" @ViewBag.teretana.Adresa.Mesto" /></td>
+                <td class="tableData"><input type="text" name="Adresa" value=" @ViewBag.teretana.Adresa.PostanskiBroj" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Godina otvaranja:</td>
+                <td class="tableData"><input type="text" name="GodOtvaranja" value=" @ViewBag.teretana.GodOtvaranja" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Cena mesecne clanarine:</td>
+                <td class="tableData"><input type="number" name="CenaMClanarine" value=" @ViewBag.teretana.CenaMClanarine" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Cena godisnje clanarine:</td>
+                <td class="tableData"><input type="text" name="CenaGClanaraine" value=" @ViewBag.teretana.CenaGClanaraine" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Cena treninga:</td>
+                <td class="tableData"><input type="text" name="CenaTreninga" value=" @ViewBag.teretana.CenaTreninga" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Cena grupnog treninga:</td>
+                <td class="tableData"><input type="text" name="CenaGrupnogTreninga" value=" @ViewBag.teretana.CenaGrupnogTreninga" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Cena treninga sa personalnim trenerom:</td>
+                <td class="tableData"><input type="text" name="CenaSaPersonalnimTrenerom" value=" @ViewBag.teretana.CenaSaPersonalnimTrenerom" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData" colspan="2">
+                    <input class="btn" type="submit" value="Izmeni" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br /><br /><br />
+    <form action="~/Vlasnik/AddTrener">
+        <button class="btn" name="add">Registruj novog trenera</button>
+    </form>
+
+
+</body>
+</html>

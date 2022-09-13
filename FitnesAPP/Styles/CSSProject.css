@@ -1,0 +1,58 @@
+﻿body {
+    background-color: #383838;
+    padding-left:100px
+}
+#naslov {
+    font-size: 40px;
+    font-family: Courier New,Helvetica, sans-serif;
+    color: #ddd;
+    padding-top:50px;
+}
+#btnLog{
+    padding-left:200px
+}
+#welcome {
+    font-size: 20px;
+    font-family: Papyrus ,Helvetica, sans-serif;
+    color: #ddd;
+}
+#tabela {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    background: #ddd 
+}
+    #tabela td {
+        border: 1px solid #000000;
+        padding: 8px;
+    }
+    #tabela th {
+        border: 1px solid #000000;
+        padding: 8px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #808080;
+        color: white;
+    }
+#pretraga td {
+    border: 1px solid #000000;
+    background-color: #ddd;
+    padding: 8px;
+}
+#kombinovanaPretraga td {
+    border: 1px solid #000000;
+    background-color: #ddd;
+    padding: 8px;
+}
+#info {
+    padding-right: 1500px;
+    background: #ddd;
+}
+div.info {
+    background: #ddd;
+}
+#detaljiNaslov {
+    font-size:20px;
+    color: #ddd;
+}

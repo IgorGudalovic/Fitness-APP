@@ -1,31 +1,183 @@
-﻿@{
+﻿@using FitnesAPP.Models
+@{
     ViewBag.Title = "Home Page";
-}
+    }
+@{
+    Layout = "";    
+    }
+<html>
+<head>
+    <title>FitApp</title>
+    @Styles.Render("~/Styles/CSSProject.css")
+</head>
+<body>
+    <table id="naslov">
+        <tr>
+            <th>
+                Fitnes Centri
+            </th>
+            @if (@ViewBag.ulogovan != null)
+            {
+                <td id="btnLog">
+                    @if (@ViewBag.ulogovan.Uloga.ToString() == "Posetilac")
+                    {
+                        <form action="~/User/Profil">
+                            <button class="btn" name="Profil">Profil</button>
+                        </form>
+                    }
+                    @if (@ViewBag.ulogovan.Uloga.ToString() == "Trener")
+                    {
+                        <form action="~/Trener/Profil">
+                            <button class="btn" name="Profil">Profil</button>
+                        </form>
+                    }
+                    @if (@ViewBag.ulogovan.Uloga.ToString() == "Vlasnik")
+                    {
+                        <form action="~/Vlasnik/Profil">
+                            <button class="btn" name="Profil">Profil</button>
+                        </form>
+                    }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+                </td>
+                <td >
+                    <form action="~/User/Logout">
+                        <button class="btn" name="Logout">Logout</button>
+                    </form>
+                </td>
+            }
+            @if (@ViewBag.ulogovan == null)
+            {
+                <td id="btnLog">
+                    <form action="~/User/Login">
+                        <button class="btn" name="Login">Login</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="~/User/Register">
+                        <button class="btn" name="Register">Register</button>
+                    </form>
+                </td>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            }
+
+        </tr>
+    </table>
+    <br /><br />
+    @if (@ViewBag.ulogovan != null)
+    {
+        <p id="welcome">
+            Dobro dosli: @ViewBag.ulogovan.KorisnickoIme
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    }
+
+    <br /><br /><br />
+    <table>
+        <tr>
+            <td>
+                <table id="tabela" border="1">
+                    <tr class="tableRow">
+                        <th class="tableHeader">Naziv</th>
+                        <th class="tableHeader">Adresa</th>
+                        <th class="tableHeader">Godina otvaranja</th>
+                        <th class="tableHeader"></th>
+                    </tr>
+                    @foreach (FitnesCentar fc in ViewBag.teretane)
+                    {
+                        <tr class="tableRow">
+                            <td class="tableData">@fc.Naziv</td>
+                            <td class="tableData">@fc.Adresa</td>
+                            <td class="tableData">@fc.GodOtvaranja</td>
+                            <td>
+                                <form action="~/Home/Detalji">
+                                    <button class="btn" name="fc" value="@fc.Naziv">Detalji</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="~/Home/SortBy">
+                    <input list="Sort" name="opcija" />
+                    <datalist id="Sort">
+                        <option value="Sortiraj po imenu rastuce"></option>
+                        <option value="Sortiraj po imenu opadajuce"></option>
+                        <option value="Sortiraj po adresi rastuce"></option>
+                        <option value="Sortiraj po adresi opadajuce"></option>
+                        <option value="Sortiraj po godini rastuce"></option>
+                        <option value="Sortiraj po godini opadajuce"></option>
+                    </datalist>
+                    <input type="submit" value="Sortiraj" />
+
+                    <br /><br />
+                </form>
+            </td>
+        </tr>
+    </table>
+    <form action="~/Home/Refresh">
+        <button class="btn" name="Ukloni filtere">Ukloni filtere</button>
+    </form>
+    <table id="pretraga">
+        <tr>
+            <td>
+                <form action="~/Home/NadjiIme">
+                    <label for="NadjiIme">Pretrazi po nazivu:</label>
+                    <br />
+                    <input type="text" name="Naziv" placeholder="Naziv teretane" />
+                    <br /><label></label><br /><label></label><br />
+                    <button class="btn" id="NadjiIme">Trazi</button>
+                </form>
+            </td>
+            <td>
+                <form action="~/Home/NadjiAdresu">
+                    <label for="NadjiAdresu">Pretrazi po adresi:</label>
+                    <br />
+                    <input type="text" id="Ulica" name="Ulica" placeholder="Ulica" />
+                    <br />
+                    <input type="text" id="Mesto" name="Mesto" placeholder="Mesto" />
+                    <br />
+                    <input type="text" id="PostanskiBroj" name="PostanskiBroj" placeholder="Postanski broj" />
+                    <br />
+                    <button class="btn" id="NadjiAdresu">Trazi</button>
+                </form>
+            </td>
+            <td>
+                <form action="~/Home/NadjiGodinu">
+                    <label for="NadjiGodinu">Pretrazi po godini otvaranja:</label>
+                    <br />
+                    <input type="number" name="from" id="from" placeholder="Od" />
+                    <br />
+                    <input type="number" name="to" id="to" placeholder="Do" />
+                    <br /><br />
+                    <button class="btn" id="NadjiGodinu">Trazi</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <table id="kombinovanaPretraga">
+        <tr>
+            <td>
+                <form action="~/Home/KombinovanaPretraga">
+                    <label for="KombinovanaPretraga">Kombinovana pretraga:</label>
+                    <br />
+                    <input type="text" name="Naziv" placeholder="Naziv" />
+                    <br />
+                    <input type="text" id="Ulica" name="Ulica" placeholder="Ulica" />
+                    <br />
+                    <input type="text" id="Mesto" name="Mesto" placeholder="Mesto" />
+                    <br />
+                    <input type="text" id="PostanskiBroj" name="PostanskiBroj" placeholder="Postanski broj" />
+                    <br />
+                    <input type="number" name="from" id="from" placeholder="Od" />
+                    <br />
+                    <input type="number" name="to" id="to" placeholder="Do" />
+                    <br />
+                    <button class="btn btnKombinovano" id="kombinovanaPretraga">Trazi</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

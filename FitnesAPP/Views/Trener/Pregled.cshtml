@@ -1,0 +1,79 @@
+﻿@using FitnesAPP.Models
+@model List<Korisnik>
+@using System.Globalization;
+
+@{
+    ViewBag.Title = "Pregled";
+}
+@{
+    Layout = "";
+}
+<html>
+<head>
+    <title>FitApp</title>
+    @Styles.Render("~/Styles/CSSProject.css")
+</head>
+<body>
+    <form action="~/Home/Index">
+        <button class="btnHome" name="Home">Home</button>
+    </form>
+    <br />
+    <h2 id="naslov">Pregled @ViewBag.trening.Naziv</h2>
+    <br />
+    <div>
+        <span id="detaljiNaslov">Lista posetilaca:</span>
+        @foreach (Korisnik k in @ViewBag.korisnici)
+        {
+            if (k.PosetilacTreninzi.Contains(ViewBag.trening))
+            {
+                <div id="info">@k.KorisnickoIme</div>
+            }
+        }
+    </div><br /><br />
+
+    <h3 style="color:red">@ViewBag.message</h3>
+    <form action="~/Trener/Modifikuj" method="post">
+        <table id="pretraga">
+            <tr class="tableRow">
+                <td class="tableData">Naziv treninga:</td>
+                <td class="tableData"><input type="text" name="Naziv" value=" @ViewBag.trening.Naziv" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Tip treninga:</td>
+                <td class="tableData"><input type="password" name="TipTreninga" value=" @ViewBag.trening.TipTreninga" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Fitnes centar:</td>
+                <td class="tableData"><input type="text" name="FitnesCentar" value=" @ViewBag.trening.FitnesCentar" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Trajanje treninga:</td>
+                <td class="tableData"><input type="text" name="TrajanjeTreninga" value="@ViewBag.trening.TrajanjeTreninga" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Datum treninga:</td>
+                <td class="tableData"><input type="text" name="DatumTreninga" value="@ViewBag.trening.DatumTreninga" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Vreme treninga:</td>
+                <td class="tableData"><input type="text" name="VremeTreninga" value="@ViewBag.trening.VremeTreninga" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Max Broj Posetilaca:</td>
+                <td class="tableData"><input type="number" name="MaxBrojPosetilaca" value="@ViewBag.trening.MaxBrojPosetilaca" /></td>
+            </tr>
+            <tr class="tableRow">
+                <td class="tableData" colspan="2">
+                    <input class="btn" type="submit" value="Izmeni" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

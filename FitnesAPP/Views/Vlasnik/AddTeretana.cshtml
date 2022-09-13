@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "AddTeretana";
+}
+@{
+    Layout = "";
+}
+<html>
+<head>
+    <title>FitApp</title>
+    @Styles.Render("~/Styles/CSSProject.css")
+</head>
+<body>
+    <form action="~/Home/Index">
+        <button class="btnHome" name="Home">Home</button>
+    </form><br />
+    <h1 id="naslov">Dodavanje novog fitnes centra</h1>
+
+    <h3 style="color:red">@ViewBag.message</h3>
+
+    <label id="detaljiNaslov">Adresa teretane je @ViewBag.adresa</label>
+
+    <form action="~/Vlasnik/AddTeretana" method="post">
+        <table id="pretraga">
+            <tr class="tableRow">
+                <td class="tableData">Naziv:</td>
+                <td class="tableData"><input type="text" name="Naziv" placeholder="Unesite naziv" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Godina otvaranja:</td>
+                <td class="tableData"><input type="text" name="GodOtvaranja" placeholder="Unesite godinu otvaranja" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Cena mesecne clanarine:</td>
+                <td class="tableData"><input type="number" name="CenaMClanarine" placeholder="Unesite cenu mesecne clanarine" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Cena godisnje clanarine:</td>
+                <td class="tableData"><input type="text" name="CenaGClanaraine" placeholder="Unesite cenu godisnje clanarine" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Cena treninga:</td>
+                <td class="tableData"><input type="text" name="CenaTreninga" placeholder="Unesite cenu treninga" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Cena grupnog treninga:</td>
+                <td class="tableData"><input type="text" name="CenaGrupnogTreninga" placeholder="Unesite cenu grupnog treninga" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Cena treninga sa personalnim trenerom:</td>
+                <td class="tableData"><input type="text" name="CenaSaPersonalnimTrenerom" placeholder="Unesite cenu treninga sa personalnim trenerom" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData" colspan="2">
+                    <input class="btn" type="submit" value="Dodaj" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>
+
+

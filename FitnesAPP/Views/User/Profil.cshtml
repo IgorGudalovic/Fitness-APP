@@ -1,0 +1,149 @@
+﻿@using FitnesAPP.Models
+@using System.Globalization;
+
+@{
+    ViewBag.Title = "Profil";
+}
+@{
+    Layout = "";
+}
+<html>
+<head>
+    <title>FitApp</title>
+    @Styles.Render("~/Styles/CSSProject.css")
+</head>
+<body>
+    <form action="~/Home/Index">
+        <button class="btnHome" name="Home">Home</button>
+    </form>
+    <br />
+    <form action="~/User/EditProfil">
+        <button class="btnHome" name="naziv" value="@ViewBag.korisnik.KorisnickoIme">Izmeni profil</button>
+    </form>
+    <br />
+    <div id="info">
+        <div class="info">
+            <span class="detaljiNaslov">Korisnicko ime:</span>
+            <span class="detalji"> @ViewBag.korisnik.KorisnickoIme</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Ime:</span>
+            <span class="detalji"> @ViewBag.korisnik.Ime</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Prezime:</span>
+            <span class="detalji"> @ViewBag.korisnik.Prezime</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Pol:</span>
+            <span class="detalji"> @ViewBag.korisnik.Pol.ToString()</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Email:</span>
+            <span class="detalji">@ViewBag.korisnik.Email</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Datum rodjenja:</span>
+            <span class="detalji">@ViewBag.korisnik.DatumRodjenja</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Uloga:</span>
+            <span class="detalji">@ViewBag.korisnik.Uloga</span>
+        </div>
+
+        <br />
+        @if ((ViewBag.korisnik.Uloga.ToString().Equals("Posetilac")) && (ViewBag.korisnik.PosetilacTreninzi != null))
+        {
+            <p id="detaljiNaslov">Lista grupnih treninga na koje sam prijavljen:</p>
+            <table id="tabela" border="1">
+                <tr>
+                    <th class="tableHeader">Naziv</th>
+                    <th class="tableHeader">Tip treninga</th>
+                    <th class="tableHeader">Fitnes centar</th>
+                    <th class="tableHeader">Trajanje treninga</th>
+                    <th class="tableHeader">Datum</th>
+                    <th class="tableHeader">Vreme</th>
+                    <th class="tableHeader">Maksimalan broj posetilaca</th>
+                    <th class="tableHeader">Broj prijavljenih korisnika na trening</th>
+
+                </tr>
+                @foreach (GrupniTrening item in ViewBag.korisnik.PosetilacTreninzi)
+                {
+                    <tr class="tableRow">
+                        <td class="tableDataDetail">@item.Naziv</td>
+                        <td class="tableDataDetail">@item.TipTreninga</td>
+                        <td class="tableDataDetail">@item.FitnesCentar</td>
+                        <td class="tableDataDetail">@item.TrajanjeTreninga min</td>
+                        <td class="tableDataDetail">@item.DatumTreninga</td>
+                        <td class="tableDataDetail">@item.VremeTreninga</td>
+                        <td class="tableDataDetail">@item.MaxBrojPosetilaca</td>
+                        <td class="tableDataDetail">@item.ListaPosetilaca.Count</td>
+                    </tr>
+                }
+            </table>
+
+            <form action="~/User/SortBy">
+                <input list="Sort" name="opcija" />
+                <datalist id="Sort">
+                    <option value="Sortiraj po imenu rastuce"></option>
+                    <option value="Sortiraj po imenu opadajuce"></option>
+                    <option value="Sortiraj po adresi rastuce"></option>
+                    <option value="Sortiraj po adresi opadajuce"></option>
+                    <option value="Sortiraj po godini rastuce"></option>
+                    <option value="Sortiraj po godini opadajuce"></option>
+                </datalist>
+                <input type="submit" value="Sortiraj" />
+            </form>
+            <br /><br />
+            <form action="~/User/Refresh">
+                <button class="btn" name="Ukloni filtere">Ukloni filtere</button>
+            </form>
+            <br />
+            <table id="pretraga">
+                <tr>
+                    <td>
+                        <form action="~/User/NadjiIme">
+                            <label for="searchByNaziv">Pretrazi po nazivu:</label>
+                            <input type="text" name="naziv" placeholder="Naziv" />
+                            <button class="btn" id="searchByName">Pronadji</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="~/User/NadjiTip">
+                            <label for="searchByTipTreninga">Pretrazi po tipu treninga:</label>
+                            <input type="text" name="tipTreninga" placeholder="Tip treninga" />
+                            <button class="btn" id="searchByTipTreninga">Pronadji</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="~/User/NadjiDatum">
+                            <label for="searchByNazivCentra">Pretrazi po datumu i vremenu:</label>
+                            <input type="text" name="from" placeholder="Datum (dd/MM/yyyy)" />
+                            <input type="text" name="to" placeholder="Datum (dd/MM/yyyy)" />
+                            <button class="btn" id="searchByNazivCentra">Pronadji</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+
+            <table id="kombinovanaPretraga">
+                <tr>
+                    <td>
+                        <form action="~/User/KombinovanaPretragaPosetilac">
+                            <label for="kombinovanaPretragaPosetilac">Kombinovana pretraga:</label>
+                            <input type="text" name="naziv" placeholder="Naziv" />
+                            <input type="text" name="tipTreninga" placeholder="Tip treninga" />
+                            <input type="text" name="from" placeholder="Datum" />
+                            <input type="text" name="to" placeholder="Datum" />
+                            <button class="btn btnKombinovano" id="kombinovanaPretragaPosetilac">Pronadji</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        }
+
+
+    </div>
+
+</body>
+</html>

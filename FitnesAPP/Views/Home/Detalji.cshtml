@@ -1,0 +1,104 @@
+﻿@using FitnesAPP.Models
+@using System.Globalization;
+@{
+    Layout = "";
+}
+<html>
+<head>
+    <title>FitApp</title>
+    @Styles.Render("~/Styles/CSSProject.css")
+</head>
+<body><br />
+    <form action="~/Home/Index">
+        <button class="btnHome" name="Home">Home</button>
+    </form>
+    <h2 id="naslov">@ViewBag.teretana.Naziv</h2>
+    <h3 style="color:red">@ViewBag.message</h3>
+
+    <div id="info">
+        <div class="info">
+            <span class="detaljiNaslov">Gde nas mozete naci:</span>
+            <span class="detalji">@ViewBag.teretana.Adresa.ToString()</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Kad smo osnovani:</span>
+            <span class="detalji">@ViewBag.teretana.GodOtvaranja</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Vlasnik:</span>
+            <span class="detalji">@ViewBag.teretana.Vlasnik.Ime</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Mesecna clanarina:</span>
+            <span class="detalji">@ViewBag.teretana.CenaMClanarine din</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Godisnja clanarina:</span>
+            <span class="detalji">@ViewBag.teretana.CenaGClanaraine din</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Cena jednog treninga:</span>
+            <span class="detalji">@ViewBag.teretana.CenaTreninga din</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Cena grupnog treninga:</span>
+            <span class="detalji">@ViewBag.teretana.CenaGrupnogTreninga din</span>
+        </div>
+        <div class="info">
+            <span class="detaljiNaslov">Cena personalnog treninga:</span>
+            <span class="detalji">@ViewBag.teretana.CenaSaPersonalnimTrenerom din</span>
+        </div>
+        <br />
+        @if (ViewBag.grupniTreninzi.Count != 0)
+        {
+            <p id="detaljiNaslov">Lista grupnih treninga: </p>
+
+            <table id="tabela" border="1">
+                <tr>
+                    <th class="tableHeader">Naziv</th>
+                    <th class="tableHeader">Tip treninga</th>
+                    <th class="tableHeader">Fitnes centar</th>
+                    <th class="tableHeader">Trajanje treninga</th>
+                    <th class="tableHeader">Datum</th>
+                    <th class="tableHeader">Vreme</th>
+                    <th class="tableHeader">Maksimalan broj posetilaca</th>
+                    <th class="tableHeader">Broj prijavljenih korisnika na trening</th>
+                    <th class="tableHeader">Prijavi se</th>
+
+                </tr>
+                @foreach (GrupniTrening item in ViewBag.grupniTreninzi)
+                {
+                    <tr class="tableRow">
+                        <td class="tableDataDetail">@item.Naziv</td>
+                        <td class="tableDataDetail">@item.TipTreninga</td>
+                        <td class="tableDataDetail">@item.FitnesCentar</td>
+                        <td class="tableDataDetail">@item.TrajanjeTreninga</td>
+                        <td class="tableDataDetail">@item.DatumTreninga</td>
+                        <td class="tableDataDetail">@item.VremeTreninga</td>
+                        <td class="tableDataDetail">@item.MaxBrojPosetilaca</td>
+                        <td class="tableDataDetail">@item.ListaPosetilaca.Count</td>
+                        <td class="tableDataDetail">
+                            @{
+                                int dan = Int32.Parse(item.DatumTreninga.Split('/')[0]);
+                                int mesec = Int32.Parse(item.DatumTreninga.Split('/')[1]);
+                                int trenutniMesec = Int32.Parse(DateTime.Now.ToString("d", CultureInfo.GetCultureInfo("en-US")).Split('/')[0]);
+                                int trenutniDan = Int32.Parse(DateTime.Now.ToString("d", CultureInfo.GetCultureInfo("en-US")).Split('/')[1]);
+                                if (mesec >= trenutniMesec || (dan >= trenutniDan && mesec == trenutniDan))
+                                {
+                                    <form action="~/Home/PrijaviSeZaGrupniTrening">
+                                        <button class="btn" name="naziv" value="@item.Naziv">Prijavi se</button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <label class="treningProsao">Stari trening</label>
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</body>
+</html>

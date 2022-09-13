@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+@{
+    Layout = "";
+}
+<html>
+<head>
+    <title>FitApp</title>
+    @Styles.Render("~/Styles/CSSProject.css")
+</head>
+<body>
+    <br />
+    <form action="~/Home/Index">
+        <button class="btnHome" name="Home">Home</button>
+    </form>
+    <h2 id="naslov">Login</h2>
+    <form action="~/User/Login" method="post">
+        <table id="pretraga">
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" name="username" /></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="password" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Login" />
+                    <p style="color:red">@ViewBag.message</p>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

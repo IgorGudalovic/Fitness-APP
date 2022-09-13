@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Register";
+}
+@{
+    Layout = "";
+}
+<html>
+<head>
+    <title>FitApp</title>
+    @Styles.Render("~/Styles/CSSProject.css")
+</head>
+<body>
+    <form action="~/Home/Index">
+        <button class="btnHome" name="Home">Home</button>
+    </form>
+    <h2 id="naslov">Register</h2>
+    <h3 style="color:red">@ViewBag.message</h3>
+
+
+
+    <form action="~/User/Register" method="post">
+        <table id="pretraga">
+            <tr class="tableRow">
+                <td class="tableData">Korisnicko ime:</td>
+                <td class="tableData"><input type="text" name="KorisnickoIme" placeholder="Unesite korisnicko ime" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Lozinka:</td>
+                <td class="tableData"><input type="password" name="Lozinka" placeholder="Unesite lozinku" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Ime:</td>
+                <td class="tableData"><input type="text" name="Ime" placeholder="Unesite ime" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Prezime:</td>
+                <td class="tableData"><input type="text" name="Prezime" placeholder="Unesite prezime" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Pol:</td>
+                <td class="tableData">
+                    <input list="Pol" name="Pol" />
+                    <datalist id="Pol">
+                        <option value="MUSKI"></option>
+                        <option value="ZENSKI"></option>
+                    </datalist>
+                </td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Email:</td>
+                <td class="tableData"><input type="text" name="Email" placeholder="Unesite email" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Datum rodjenja:</td>
+                <td class="tableData"><input type="text" name="DatumRodjenja" placeholder="dd/MM/yyyy" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData" colspan="2">
+                    <input class="btn" type="submit" value="Register" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

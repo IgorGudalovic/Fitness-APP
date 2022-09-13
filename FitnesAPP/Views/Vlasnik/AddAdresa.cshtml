@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "AddAdresa";
+}
+
+@{
+    Layout = "";
+}
+<html>
+<head>
+    <title>FitApp</title>
+    @Styles.Render("~/Styles/CSSProject.css")
+</head>
+<body>
+    <form action="~/Home/Index">
+        <button class="btnHome" name="Home">Home</button>
+    </form><br />
+
+    <h2 id="naslov">Unesite adresu fitnes centra:</h2>
+    <h3 style="color:red">@ViewBag.message</h3>
+
+
+
+    <form action="~/Vlasnik/AddAdresa" method="post">
+        <table id="pretraga">
+            <tr class="tableRow">
+                <td class="tableData">Ulica:</td>
+                <td class="tableData"><input type="text" name="Ulica" placeholder="Unesite Ulicu" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Mesto:</td>
+                <td class="tableData"><input type="text" name="Mesto" placeholder="Unesite Mesto" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData">Postanski broj:</td>
+                <td class="tableData"><input type="text" name="PostanskiBroj" placeholder="Unesite Postanski broj" /></td>
+            </tr>
+
+            <tr class="tableRow">
+                <td class="tableData" colspan="2">
+                    <input class="btn" type="submit" value="Prosledi" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
