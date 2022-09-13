@@ -186,6 +186,7 @@
     <Content Include="Views\Vlasnik\AddTeretana.cshtml" />
     <Content Include="Views\Vlasnik\AddTrener.cshtml" />
     <Content Include="Views\Vlasnik\AddAdresa.cshtml" />
+    <Content Include="TextFiles\test.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

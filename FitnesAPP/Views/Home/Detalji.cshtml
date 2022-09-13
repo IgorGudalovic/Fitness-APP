@@ -24,10 +24,14 @@
             <span class="detaljiNaslov">Kad smo osnovani:</span>
             <span class="detalji">@ViewBag.teretana.GodOtvaranja</span>
         </div>
-        <div class="info">
-            <span class="detaljiNaslov">Vlasnik:</span>
-            <span class="detalji">@ViewBag.teretana.Vlasnik.Ime</span>
-        </div>
+        @if (ViewBag.teretana.Vlasnik != null)
+        {
+            <div class="info">
+                <span class="detaljiNaslov">Vlasnik:</span>
+                <span class="detalji">@ViewBag.teretana.Vlasnik.Ime</span>
+            </div>
+        }
+        
         <div class="info">
             <span class="detaljiNaslov">Mesecna clanarina:</span>
             <span class="detalji">@ViewBag.teretana.CenaMClanarine din</span>
