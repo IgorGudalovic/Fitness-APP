@@ -52,7 +52,7 @@ namespace FitnesAPP.Models
             List<Korisnik> korisnici = new List<Korisnik>();//promeni path!!!!!!!!!!!!!!!!!!!!!!
 
             string jsonFromFile;
-            using (var reader = new StreamReader("C:\\Users\\a\\Desktop\\FitnesAPP\\FitnesAPP\\TextFiles\\Korisnici.json"))
+            using (var reader = new StreamReader("C:\\Users\\igorg\\Source\\Repos\\pr148-2019-web-projekat\\FitnesAPP\\TextFiles\\Korisnici.json"))
             {
                 jsonFromFile = reader.ReadToEnd();
             }

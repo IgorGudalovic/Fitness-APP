@@ -34,7 +34,7 @@ namespace FitnesAPP.Models
         {
             List<GrupniTrening> grupniTreninzi = new List<GrupniTrening>();//promeni path!!!!!!!!!!!!!!!!!!!!!!
             string jsonFromFile;
-            using (var reader = new StreamReader("C:\\Users\\a\\Desktop\\FitnesAPP\\FitnesAPP\\TextFiles\\GrupniTreninzi.json"))
+            using (var reader = new StreamReader("C:\\Users\\igorg\\Source\\Repos\\pr148-2019-web-projekat\\FitnesAPP\\TextFiles\\GrupniTreninzi.json"))
             {
                 jsonFromFile = reader.ReadToEnd();
             }
